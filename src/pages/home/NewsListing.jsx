@@ -1,24 +1,34 @@
 import React from "react";
 import "../../index.css";
 import styled from "styled-components";
-import { H3, P, Link } from "../../components/Text";
-import { Wrapper } from "../../components/FlexLayout";
+import {P, Link} from "../../components/Text";
+import parse from "html-react-parser";
 
-const NewsListing = ({src}) => (
-    <Card href="#">
+
+const NewsListing = ({article, isMainArticle}) => {
+  let detailUrl = "http://localhost:8000/nyheter/" + article.id.toString() + "/" + article.slug + "/";
+  return (
+      <Card href={detailUrl}>
         <ImageContainer>
-            <Image src={src} />
-            <Overlay>
+          {isMainArticle ? <MainImage src={article.image}/>
+              : <Image src={article.image}/>}
+
+          {isMainArticle ?
+              <MainOverlay>
                 <ReadMore>Les mer</ReadMore>
-            </Overlay>
+              </MainOverlay>
+              :
+              <Overlay>
+                <ReadMore>Les mer</ReadMore>
+              </Overlay>
+          }
         </ImageContainer>
-        <Title>
-            17. mai med HC!
-        </Title>
-        <TitleLine />
-        <P small>Mandag 27. april er det klart for å velge nye komitémedlemmer!</P>
-    </Card>
-);
+        <Title>{article.title}</Title>
+        <TitleLine/>
+        <div>{parse(article.content)}</div>
+      </Card>
+  );
+};
 
 const Card = styled(Link)`
     width: 100%;
@@ -34,8 +44,15 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
+    object-fit: cover;
     width: 100%;
-    height: auto;
+    height: 300px;
+`;
+
+const MainImage = styled.img`
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 `;
 
 const Title = styled.div`
@@ -52,6 +69,25 @@ const TitleLine = styled.div`
 `;
 
 const Overlay = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: var(--primary);
+    &:hover {
+        opacity: 0.5;
+    }
+`;
+
+const MainOverlay = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,5 +113,4 @@ const ReadMore = styled(P)`
 `;
 
 
-
-export { NewsListing };
+export {NewsListing};
