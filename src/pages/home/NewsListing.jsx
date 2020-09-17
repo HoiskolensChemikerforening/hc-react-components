@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 
 
 const NewsListing = ({article, isMainArticle}) => {
-  let detailUrl = "http://localhost:8000/nyheter/" + article.id.toString() + "/" + article.slug + "/";
+  let detailUrl = article.absolute_url;
   return (
       <Card href={detailUrl}>
         <ImageContainer>
@@ -25,7 +25,7 @@ const NewsListing = ({article, isMainArticle}) => {
         </ImageContainer>
         <Title>{article.title}</Title>
         <TitleLine/>
-        <div>{parse(article.content)}</div>
+        <div>Forfatter: {article.author.full_name}, {parse(article.content)}</div>
       </Card>
   );
 };
