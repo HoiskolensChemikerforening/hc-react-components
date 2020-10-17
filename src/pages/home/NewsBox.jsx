@@ -29,14 +29,20 @@ function NewsBox() {
         password: "passord",
       }),
     });
-    const jsonData = await response.json();
-    console.log(jsonData);
+    const jsonToken  = await response.json();
+    console.log(jsonToken.token);
+    setToken(jsonToken.token)
+
 
   }
 
   // Gets all articles from the news api url and sets the articles variable
   async function fetchArticlesData() {
-    const response = await fetch("http://localhost:8000/nyheter/api/", );
+    const response = await fetch("http://localhost:8000/nyheter/api/", {
+      headers: {
+        "Autorization": "Token " + token,
+      }
+    });
     const jsonData = await response.json();
     setLatestArticle(jsonData[0]);
   }
