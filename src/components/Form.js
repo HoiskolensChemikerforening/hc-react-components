@@ -2,28 +2,31 @@ import styled, { css } from "styled-components";
 import "../index.css";
 import React from "react";
 import { H1 } from "./Text";
+import { BiImage } from "react-icons/bi";
 
 const ExampleForm = ({ children }) => (
-  <form>
-    <FormContainer>
-      <H1>Hei</H1>
-      <TextArea width="600px" placeholder="Skriv noe sladder..." />
-      <TextField />
-      <DropDown>
-        <Option>Value1</Option>
-        <Option>Value2</Option>
-      </DropDown>
-      <ImageField />
-      <Password />
-    </FormContainer>
-  </form>
+    <form>
+      <FormContainer>
+        <H1>Hei</H1>
+        <TextArea width="600px" placeholder="Skriv noe sladder..."/>
+        <TextField/>
+        <DropDown>
+          <Option>Value1</Option>
+          <Option>Value2</Option>
+        </DropDown>
+        <ImageField/>
+        <Password/>
+      </FormContainer>
+    </form>
 );
 
 const ImageUpload = () => (
-  <ImageFieldLabel>
-    <i class="fa fa-cloud-upload"></i> Last opp bilde...
-    <ImageField />
-  </ImageFieldLabel>
+    <ImageFieldLabel>
+      <CenteredIcon>
+        <BiImage/>Last opp bilde
+      </CenteredIcon>
+      <ImageField/>
+    </ImageFieldLabel>
 );
 
 const FormContainer = styled.div`
@@ -36,8 +39,8 @@ const TextField = styled.input`
   border-radius: 4px;
   background-color: white;
   padding: 10px;
-  width: ${props => props.width || "200px"};
-  placeholder: ${props => props.placeholder || ""};
+  width: ${ props => props.width || "200px" };
+  placeholder: ${ props => props.placeholder || "" };
 `;
 
 const TextArea = styled.textarea`
@@ -47,9 +50,9 @@ const TextArea = styled.textarea`
   padding: 10px;
   overflow: auto;
   resize: none;
-  width: ${props => props.width || "200px"};
-  height: ${props => props.height || "100px"};
-  placeholder: ${props => props.placeholder || ""};
+  width: ${ props => props.width || "200px" };
+  height: ${ props => props.height || "100px" };
+  placeholder: ${ props => props.placeholder || "" };
 `;
 
 const DropDown = styled.select`
@@ -76,29 +79,38 @@ const DropDown = styled.select`
   background-repeat: no-repeat;
 
   /* props */
-  id: ${props => props.id || null};
-  width: ${props => props.width || "200px"};
+  id: ${ props => props.id || null };
+  width: ${ props => props.width || "200px" };
 `;
 
 const Option = styled.option`
-  value: ${props => props.value};
+  value: ${ props => props.value };
+`;
+
+const CenteredIcon = styled.span`
+  display: flex;
+  align-items: center;
 `;
 
 const ImageFieldLabel = styled.label`
   border: solid 1px var(--gray-50);
   border-radius: 4px;
   background-color: var(--gray-10);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding: 10px;
+  height: 65px;
   cursor: pointer;
   font-size: 1rem;
-  width: ${props => props.width || "200px"};
+  width: ${ props => props.width || "200px" };
 `;
 
 const ImageField = styled.input.attrs({ type: "file", accept: "image/*" })``;
 
 const Password = styled.input.attrs({ type: "password" })`
-  placeholder: ${props => props.placeholder || "Select an image..."};
-  width: ${props => props.width || "200px"};
+  placeholder: ${ props => props.placeholder || "Select an image..." };
+  width: ${ props => props.width || "200px" };
 `;
 
-export { ExampleForm };
+export { ExampleForm, ImageUpload, TextArea };

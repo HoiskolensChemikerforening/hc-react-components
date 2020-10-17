@@ -11,7 +11,7 @@ const Button = styled.button`
 
   background: transparent;
   border: 2px transparent;
-  border-radius: 1px;
+  border-radius: 4px;
 
   cursor: pointer;
 
@@ -26,6 +26,4 @@ const Button = styled.button`
   `}
 `;
 
-export {
-  Button
-};
+export {Button};
