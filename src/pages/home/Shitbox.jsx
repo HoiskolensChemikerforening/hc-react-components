@@ -8,9 +8,9 @@ import { ImageUpload, TextArea } from "../../components/Form";
 const Shitbox = () => (
     <form>
       <Wrapper>
-        <H3 bold>Sladreboksen</H3>
-        <TextArea width={"95%"} placeholder="Skriv noe sladder..."/>
-        <FormRow2 width={"95%"}>
+        <H3 style={{"margin": "0px"}} bold>Sladreboksen</H3>
+        <TextArea width={"95%"} height={"60px"} placeholder="Skriv noe sladder..."/>
+        <FormRow2>
           <ImageUpload/>
           <Button primary>Send inn</Button>
         </FormRow2>
@@ -21,12 +21,12 @@ const Shitbox = () => (
 const FormRow2 = styled.div`
   display: flex;
   justify-content: space-between;
-  width: ${ props => props.width || "380px" };
+  width: ${ props => props.width || "100%" };
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  height: 300px;
+  height: 220px;
   padding: 10px 15px;
   flex-direction: column;
   justify-content: space-between;

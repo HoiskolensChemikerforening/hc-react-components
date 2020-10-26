@@ -1,10 +1,10 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import "../index.css";
 import React from "react";
 import { H1 } from "./Text";
 import { BiImage } from "react-icons/bi";
 
-const ExampleForm = ({ children }) => (
+const ExampleForm = () => (
     <form>
       <FormContainer>
         <H1>Hei</H1>
@@ -100,7 +100,7 @@ const ImageFieldLabel = styled.label`
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
-  height: 65px;
+  height: 50px;
   cursor: pointer;
   font-size: 1rem;
   width: ${ props => props.width || "200px" };
